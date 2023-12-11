@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome, {{ user.first_name}} {{ user.last_name }}{% endblock %}
+<!-- Main Wrapper -->
+{% block content %}
+<div class="main-wrapper">
+
+	<!-- Header -->
+	<div class="header">
+
+		<!-- Logo -->
+		<div class="header-left">
+			<a href="{% url 'index' %}" class="logo">
+				<img src="{% static 'Lassets/img/PCRAQ Logo.png' %}"  height="40" alt="">
+			</a>
+		</div>
+		<!-- /Logo -->
+
+		
+		<a id="toggle_btn" href="javascript:void(0);">
+			<span class="bar-icon">
+				<span></span>
+				<span></span>
+				<span></span>
+			</span>
+		</a>
+
+		<!-- Header Title -->
+		<div class="page-title-box">
+			<h3>PAICTA Employee Tracking System</h3>
+		</div>
+		<!-- /Header Title -->
+
+		<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+
+		<!-- Header Menu -->
+		<ul class="nav user-menu">
+
+			<!-- Search -->
+			<li class="nav-item">
+				<div class="top-nav-search">
+					<a href="javascript:void(0);" class="responsive-search">
+						<i class="fa fa-search"></i>
+					</a>
+					<form action="search.html">
+						<input class="form-control" type="text" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+			</li>
+			<!-- /Search -->
+
+			<!-- Flag -->
+			
+			
+
+			<li class="nav-item dropdown has-arrow flag-nav">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+
+					<alt="" height="20"> <span>Language</span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a href="javascript:void(0);" class="dropdown-item">
+						<img src="{% static 'Dassets/img/flags/us.png' %}" alt="" height="16"> English
+					</a>
+					<a href="javascript:void(0);" class="dropdown-item">
+						<img src="{% static 'Dassets/img/flags/fr.png' %}" alt="" height="16"> French
+					</a>
+					<a href="javascript:void(0);" class="dropdown-item">
+						<img src="{% static 'Dassets/img/flags/es.png' %}" alt="" height="16"> Spanish
+					</a>
+					<a href="javascript:void(0);" class="dropdown-item">
+						<img src="{% static 'Dassets/img/flags/de.png' %}" alt="" height="16"> German
+					</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown has-arrow main-drop">
+				<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+					<span class="user-img"><img src="{% static 'Dassets/img/profiles/pers.png' %}" alt="">
+						<span class="status online"></span></span>
+					<span>{{ user.first_name }} {{user.last_name}} </span>
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="profile.html">My Profile</a>
+					<a class="dropdown-item" href="settings.html">Settings</a>
+					<a class="dropdown-item" href="login.html">Logout</a>
+				</div>
+			</li>
+		</ul>
+		<!-- /Header Menu -->
+
+		<!-- Mobile Menu -->
+		<div class="dropdown mobile-user-menu">
+			<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+					class="fa fa-ellipsis-v"></i></a>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href="profile.html">My Profile</a>
+				<a class="dropdown-item" href="settings.html">Settings</a>
+				<a class="dropdown-item" href="login.html">Logout</a>
+			</div>
+		</div>
+		<!-- /Mobile Menu -->
+
+	</div>
+	<!-- /Header -->
+
+	<!-- Sidebar -->
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-inner slimscroll">
+			<div id="sidebar-menu" class="sidebar-menu">
+				<ul>
+					<li class="menu-title">
+						<span>Main</span>
+					</li>
+					<li class="submenu">
+						<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span
+								class="menu-arrow"></span></a>
+						<ul style="display: none;">
+							<li><a class="active" href="{% url 'DashboardApp' userid=user.id%}">Admin Dashboard</a></li>
+							<li class="menu-title">
+								<span>Employees</span>
+							</li>
+							<li class="submenu">
+								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span
+										class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="/employee">All Employees</a></li>
+								</ul>
+							</li>
+							<li>
+
+							</li>
+							<li><a href="{% url 'project_view'%}"><i class="la la-external-link-square"></i>
+								<span>Project Progress</span></a></li>
+								<li><a href="{% url 'leaves_view'%}"><i class="la la-external-link-square"></i>
+									<span>Leaves</span></a></li>	
+							<li><a href="{% url 'resignation'%}"><i class="la la-external-link-square"></i>
+									<span>Resignation</span></a></li>
+							<li><a href="{% url 'termination' %}"><i class="la la-times-circle"></i> <span>Termination</span></a>
+							</li>
+							<li class="menu-title">
+								<span>Administration</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /Sidebar -->
+
+	<!-- Page Wrapper -->
+	<div class="page-wrapper">
+
+		<!-- Page Content -->
+		<div class="content container-fluid">
+
+			<!-- Page Header -->
+			<div class="page-header">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3 class="page-title">Welcome, {{ user.first_name}} {{ user.last_name}}</h3>
+						<ul class="breadcrumb">
+							<p>Thank you for joining our platform.</p>
+                            <div style="height: 2px;"></div>
+                            {% comment %} <p>Get ready to experience the power of Smarthr, the ultimate HR management solution.</p> {% endcomment %}
+						</ul>
+                        <a href="{% url 'DashboardApp' userid=user.id%}" class="btn btn-primary" style="">Get Started</a>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Header -->
+	
+		</div>
+		<form method="POST" class="post-form" enctype="multipart/form-data">  
+			{% csrf_token %}  
+			{{ form.as_p }}  
+			<button type="submit" class="save btn btn-default"></button>  
+	</form>  
+	<div id="add_resignation" class="modal custom-modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> 
+					<h5 class="modal-title">Add Employee</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/add_employee" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group">
+							<label>Employee Name <span class="text-danger">*</span></label>
+							{% comment %} <input class="form-control" type="text"name = "name" id="search_employee" placeholder="Nomathamsanqa" required> {% endcomment %}
+							
+							<script src="{% static 'assets/js/search.js'%}"></script>
+						</div>
+						<div class="form-group">
+							<label>Department <span class="text-danger">*</span></label>
+							<input class="form-control" type="text" name = "department" placeholder="Software Development" required>
+						</div>
+						<div class="form-group">
+							<label>Email<span class="text-danger">*</span></label>
+							<input type="email" name ="email" class="form-control" required>
+							
+						</div>
+						<div class="form-group">
+							<label>Status <span class="text-danger">*</span></label>
+							<select name = "status" class="form-control" required>
+								<option value="" selected="">--Choose status--</option>
+								<option value="Active">Active</option>
+								<option value="Inactive">Inactive</option>
+							</select>
+		
+						</div>
+						<div class="form-group">
+							<span>Other Info</span>
+							{% comment %} <p></p> {% endcomment %}
+						</div>
+						<div class="form-group">
+							<label>Project Name</label>
+							<input type="text" name ="project_name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Role</label>
+							<select name="role" class="form-control">
+								<option selected value="">--Select Role--</option>
+								<option value="Project Manager">Project Manager</option>
+								<option value="Team Lead">Team Lead</option>
+								<option value="Developer or Programmer">Developer/Programmer</option>
+								<option value="Designer">Designer</option>
+								<option value="Tester or QA Analyst">Tester/QA Analyst</option>
+								<option value="Business Analyst">Business Analyst</option>
+								<option value="Project Sponsor">Project Sponsor</option>
+								<option value="Project Coodinator or Administrator">Project Coodinator/Administrator</option>
+								{% comment %} <option value="Project Manager">Project Manager</option> {% endcomment %}
+							</select>
+						</div>
+						<div class="submit-section">
+							<button class="btn btn-primary submit-btn">Submit</button>
+						</div>
+						{% comment %} {% endfor %} {% endcomment %}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Employee -->
+	<div id="add_project" class="modal custom-modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Project</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/add_project/" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group">
+							<label>Project Name<span class="text-danger">*</span></label>
+							<input class="form-control" type="text"name = "name" placeholder="E.g., Financial System" required>
+						</div>
+						<div class="form-group">
+							<label>Project Leader <span class="text-danger">*</span></label>
+							<p>{{content.first_name}}</p>
+                           <!-- Include the URL of the employee_list view function -->     
+						<div class="form-group">
+							<label>Start Date <span class="text-danger">*</span></label>
+							<input class="form-control" type="date"name = "startdate" placeholder="E.g., Financial System" required>
+						</div>
+						<div class="form-group">
+							<label>End Date <span class="text-danger">*</span></label>
+							<input class="form-control" type="date"name = "enddate" placeholder="E.g., Financial System" required>
+						</div>
+						<div class="form-group">
+							<label>Project Status <span class="text-danger">*</span></label>
+							<select class="form-control" name="status" required>
+								<option selected value="">--Select Project Status--</option>
+								<option  value="Not Started">Not Started</option>
+								<option  value="In Progress">In Progress</option>
+								<option  value="On Hold">On Hold</option>
+								<option  value="Completed">Completed</option>
+								<option  value="Cancelled">Cancelled</option>
+								<option  value="Overdue">Overdue</option>
+								<option  value="Pending Approval">Pending Approval</option>
+								<option  value="Blocked">Blocked</option>
+								<option  value="Reopened">Reopened</option>
+								<option  value="Deferred">Deferred</option>
+							</select>						
+						</div>
+						<div class="form-group">
+							<label>Version Control Link <span class="text-danger">*</span></label>
+							<input class="form-control" type="link" name = "version" placeholder="E.g., https://version-control.com/project-name" required>
+						</div>
+						<div class="submit-section">
+							<button class="btn btn-primary submit-btn">Submit</button>
+						</div>
+						{% comment %} {% endfor %} {% endcomment %}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- jQuery -->
+{% endblock %}

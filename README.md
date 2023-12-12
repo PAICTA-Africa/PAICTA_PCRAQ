@@ -1,2 +1,2 @@
 # PAICTA_PCRAQ
-#Intructions of for project need to be updated below:
+#Intructions for the project need to be updated below:
